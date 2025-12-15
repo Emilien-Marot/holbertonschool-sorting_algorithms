@@ -3,8 +3,7 @@
 /**
  * insertion_sort_list - blabla
  *
- * @array: abc
- * @size: def
+ * @list: abc
  *
  * Return: xyz
  */
@@ -14,7 +13,7 @@ void insertion_sort_list(listint_t **list)
 
 	current = *list;
 	prev = NULL;
-	while(current->next != NULL)
+	while (current->next != NULL)
 	{
 		prev = current;
 		current = current->next;
