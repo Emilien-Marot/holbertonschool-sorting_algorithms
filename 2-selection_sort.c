@@ -18,7 +18,7 @@ void selection_sort(int *array, size_t size)
 		change = 0;
 		i_min = i_0;
 		min = array[i_0];
-		for (i = i_0; i < 10; i++)
+		for (i = i_0; i < size; i++)
 		{
 			if (array[i] < min)
 			{
