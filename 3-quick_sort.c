@@ -11,45 +11,52 @@
  */
 void quick_sort(int *array, size_t size)
 {
-	quick_sort_rec(array, size);
+	quick_sort_rec(array, size, 0, size);
 }
 
-void quick_sort_rec(int *array, size_t size)
+/**
+ * quick_sort_rec - blabla
+ *
+ * @array: abc
+ * @total_size: def
+ * @i_start: ghi
+ * @size: jkl
+ *
+ * Return: xyz
+ */
+void quick_sort_rec(int *array, size_t total_size, size_t i_start, size_t size)
 {
+	size_t i_lo, i_hi;
 	int pivot, tmp;
-	size_t i, j, size_lo = 0, size_hi = 0;
 
+	i_lo = i_start;
+	i_hi = size - 1;
+	if (i_hi == i_lo)
+		return;
 	pivot = array[size - 1];
-	printf("pivot: %d\nsize: %lu\n", pivot, size);
-	for (i = 0; i < size - 1; i++)
+	for (i_lo = i_start; i_lo < i_hi; i_lo++)
 	{
-		size_lo = 0;
-		size_hi = 0;
-		printf("li%lu-", i);
-		if (array[i] < pivot)
+		if (array[i_lo] >= pivot)
 		{
-			size_lo++;
-			printf("c:sl%lu-", size_lo);
-			continue;
-		}
-		for (j = size - 2; j > i; j--)
-		{
-			printf("lj%lu-", j);
-			if (array[j] > pivot)
+			while (i_hi > i_lo && array[i_hi] >= pivot)
 			{
-				size_hi++;
-				printf("c:sh%lu-", size_hi);
-				continue;
+				i_hi--;
 			}
-			tmp = array[j];
-			array[j] = array[i];
-			array[i] = tmp;
-			size_lo++;
-			size_hi++;
-			printf("\n");
-			print_array(array, size);
+			if (i_hi > i_lo)
+			{
+				tmp = array[i_hi];
+				array[i_hi] = array[i_lo];
+				array[i_lo] = tmp;
+				print_array(array, total_size);
+			}
 		}
 	}
-	printf("\n");
-	print_array(array, size);
+	if (i_hi != size - 1)
+	{
+		array[size - 1] = array[i_hi];
+		array[i_hi] = pivot;
+		print_array(array, total_size);
+	}
+	quick_sort_rec(array, total_size, i_start, i_lo);
+	quick_sort_rec(array, total_size, i_hi, size);
 }
